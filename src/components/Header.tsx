@@ -89,7 +89,7 @@ function DesktopNav() {
   return (
     <div className="content-stretch hidden lg:flex items-center justify-between flex-1 relative shrink-0 max-w-7xl mx-auto px-8" data-name="Container">
       {/* Navigation Links - Center */}
-      <div className="flex items-center gap-[60px] mx-auto">
+      <div className="flex items-center gap-8 mx-auto">
         <a className="cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 dark:text-gray-300 text-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" href="#accueil">
           <p className="leading-[28px] whitespace-pre">Accueil</p>
         </a>
@@ -108,7 +108,7 @@ function DesktopNav() {
       </div>
       
       {/* Right Side - Cart + Theme + Auth Buttons */}
-      <div className="flex items-center gap-[16px]">
+      <div className="flex items-center gap-4">
         {/* Panier */}
         <a
           href="#cart"
