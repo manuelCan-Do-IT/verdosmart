@@ -50,7 +50,7 @@ function SheetContent({
   side = "right",
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
-  side?: "top" | "right" | "bottom" | "left";
+  side?: "top" | "right" | "bottom" | "left" | "center";
 }) {
   return (
     <SheetPortal>
@@ -67,6 +67,8 @@ function SheetContent({
             "data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b",
           side === "bottom" &&
             "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
+          side === "center" &&
+            "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 inset-0 m-0 h-auto w-[92vw] max-w-md mx-auto my-12 rounded-md border flex items-start justify-center",
           className,
         )}
         {...props}

@@ -32,13 +32,25 @@ export type LoginLog = {
   provider?: string | null;
 };
 
+export type Address = {
+  id?: number;
+  user_id: string;
+  label?: string | null;
+  line1: string;
+  city: string;
+  zip: string;
+  country: string;
+  created_at?: string;
+  updated_at?: string;
+};
+
 // Context shape
 interface AuthContextShape {
   user: User | null;
   session: Session | null;
   loading: boolean;
   // Auth actions
-  signUpWithEmail: (email: string, password: string) => Promise<{ error?: string }>
+  signUpWithEmail: (email: string, password: string, metadata?: { full_name?: string }) => Promise<{ error?: string }>
   signInWithEmail: (email: string, password: string) => Promise<{ error?: string }>
   signInWithGoogle: () => Promise<{ error?: string }>
   signOut: () => Promise<{ error?: string }>
@@ -48,6 +60,13 @@ interface AuthContextShape {
   getPreferences: () => Promise<Preferences | null>
   updatePreferences: (patch: Partial<Preferences>) => Promise<{ error?: string }>
   getLoginHistory: (limit?: number) => Promise<LoginLog[]>
+  // Addresses actions
+  getAddresses: () => Promise<Address[]>
+  addAddress: (addr: Omit<Address, 'id' | 'user_id'>) => Promise<{ error?: string; id?: number }>
+  updateAddress: (id: number, patch: Partial<Address>) => Promise<{ error?: string }>
+  deleteAddress: (id: number) => Promise<{ error?: string }>
+  // Security actions
+  updatePassword: (newPassword: string) => Promise<{ error?: string }>
 }
 
 const AuthContext = createContext<AuthContextShape | undefined>(undefined);
@@ -103,9 +122,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signUpWithEmail = async (email: string, password: string) => {
+  const signUpWithEmail = async (email: string, password: string, metadata?: { full_name?: string }) => {
     if (!SUPABASE_READY) return { error: 'Supabase non configuré' };
-    const { error } = await supabase.auth.signUp({ email, password });
+    const redirectTo = `${window.location.origin}/#confirmation`;
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: redirectTo, data: metadata },
+    });
     if (error) return { error: error.message };
     return {};
   };
@@ -187,6 +211,46 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return (data ?? []) as LoginLog[];
   };
 
+  const getAddresses = async (): Promise<Address[]> => {
+    if (!SUPABASE_READY || !user) return [];
+    const { data, error } = await supabase
+      .from('addresses')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: true });
+    if (error) return [];
+    return (data ?? []) as Address[];
+  };
+
+  const addAddress = async (addr: Omit<Address, 'id' | 'user_id'>) => {
+    if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
+    const payload = { ...addr, user_id: user.id };
+    const { data, error } = await supabase.from('addresses').insert(payload).select('id').single();
+    if (error) return { error: error.message };
+    return { id: data?.id };
+  };
+
+  const updateAddress = async (id: number, patch: Partial<Address>) => {
+    if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
+    const { error } = await supabase.from('addresses').update(patch).eq('id', id).eq('user_id', user.id);
+    if (error) return { error: error.message };
+    return {};
+  };
+
+  const deleteAddress = async (id: number) => {
+    if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
+    const { error } = await supabase.from('addresses').delete().eq('id', id).eq('user_id', user.id);
+    if (error) return { error: error.message };
+    return {};
+  };
+
+  const updatePassword = async (newPassword: string) => {
+    if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) return { error: error.message };
+    return {};
+  };
+
   const value = useMemo<AuthContextShape>(() => ({
     user,
     session,
@@ -200,6 +264,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     getPreferences,
     updatePreferences,
     getLoginHistory,
+    getAddresses,
+    addAddress,
+    updateAddress,
+    deleteAddress,
+    updatePassword,
   }), [user, session, loading]);
 
   return (

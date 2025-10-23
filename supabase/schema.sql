@@ -125,3 +125,35 @@ to authenticated using (auth.uid() = user_id or public.is_admin());
 create policy if not exists "user_roles_manage_service_role"
 on public.user_roles for all
 to authenticated using (auth.role() = 'service_role') with check (auth.role() = 'service_role');
+
+-- addresses table for shipping addresses
+create table if not exists public.addresses (
+  id bigserial primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  label text,
+  line1 text not null,
+  city text not null,
+  zip text not null,
+  country text not null,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+alter table public.addresses enable row level security;
+
+create policy if not exists "addresses_select_own_or_admin"
+on public.addresses for select
+to authenticated using (auth.uid() = user_id or public.is_admin());
+
+create policy if not exists "addresses_insert_self"
+on public.addresses for insert
+to authenticated with check (auth.uid() = user_id);
+
+create policy if not exists "addresses_update_self"
+on public.addresses for update
+to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+create policy if not exists "addresses_delete_self"
+on public.addresses for delete
+to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+

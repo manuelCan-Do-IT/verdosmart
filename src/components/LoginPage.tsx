@@ -101,7 +101,7 @@ export default function LoginPage() {
       setErrorMsg(error);
       return;
     }
-    window.location.hash = "profil";
+    window.location.hash = "accueil";
   };
 
   return (
