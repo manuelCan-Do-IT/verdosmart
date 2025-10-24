@@ -67,6 +67,9 @@ interface AuthContextShape {
   deleteAddress: (id: number) => Promise<{ error?: string }>
   // Security actions
   updatePassword: (newPassword: string) => Promise<{ error?: string }>
+  // Roles
+  getAccountRole: () => Promise<'user' | 'admin' | null>
+  isAdmin: () => Promise<boolean>
 }
 
 const AuthContext = createContext<AuthContextShape | undefined>(undefined);
@@ -251,6 +254,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return {};
   };
 
+  const getAccountRole = async (): Promise<'user' | 'admin' | null> => {
+    if (!SUPABASE_READY || !user) return null;
+    const { data, error } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .maybeSingle();
+    if (error) return null;
+    return (data?.role as 'user' | 'admin' | undefined) ?? null;
+  };
+
+  const isAdmin = async (): Promise<boolean> => {
+    const role = await getAccountRole();
+    return role === 'admin';
+  };
+
   const value = useMemo<AuthContextShape>(() => ({
     user,
     session,
@@ -269,6 +288,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     updateAddress,
     deleteAddress,
     updatePassword,
+    getAccountRole,
+    isAdmin,
   }), [user, session, loading]);
 
   return (

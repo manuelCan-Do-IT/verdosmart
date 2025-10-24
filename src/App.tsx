@@ -24,6 +24,12 @@ import MyOrdersPage from "./components/MyOrdersPage";
 import MyAppointmentsPage from "./components/MyAppointmentsPage";
 import MessagingPage from "./components/MessagingPage";
 import MyProfilePage from "./components/MyProfilePage";
+import AdminLoginPage from "./components/admin/AdminLoginPage";
+import AdminDashboardPage from "./components/admin/AdminDashboardPage";
+import AdminUsersPage from "./components/admin/AdminUsersPage";
+import AdminCatalogPage from "./components/admin/AdminCatalogPage";
+import AdminTransactionsPage from "./components/admin/AdminTransactionsPage";
+import AdminAnalyticsPage from "./components/admin/AdminAnalyticsPage";
 
 type Page =
   | "home"
@@ -40,7 +46,13 @@ type Page =
   | "accountOrders"
   | "accountAppointments"
   | "accountMessaging"
-  | "accountProfile";
+  | "accountProfile"
+  | "adminLogin"
+  | "adminDashboard"
+  | "adminUsers"
+  | "adminCatalog"
+  | "adminTransactions"
+  | "adminAnalytics";
 
 function HomePage() {
   return (
@@ -95,6 +107,31 @@ function AppContent() {
           default:
             setCurrentPage("accountDashboard");
         }
+      } else if (path?.startsWith("admin")) {
+        const parts = path.split("/");
+        const sub = parts[1] || "dashboard";
+        switch (sub) {
+          case "login":
+            setCurrentPage("adminLogin");
+            break;
+          case "dashboard":
+            setCurrentPage("adminDashboard");
+            break;
+          case "users":
+            setCurrentPage("adminUsers");
+            break;
+          case "catalog":
+            setCurrentPage("adminCatalog");
+            break;
+          case "transactions":
+            setCurrentPage("adminTransactions");
+            break;
+          case "analytics":
+            setCurrentPage("adminAnalytics");
+            break;
+          default:
+            setCurrentPage("adminDashboard");
+        }
       } else if (path === "accueil" || path === "") setCurrentPage("home");
     };
 
@@ -139,6 +176,18 @@ function AppContent() {
         return user ? <MessagingPage /> : <LoginPage />;
       case "accountProfile":
         return user ? <MyProfilePage /> : <LoginPage />;
+      case "adminLogin":
+        return <AdminLoginPage />;
+      case "adminDashboard":
+        return <AdminDashboardPage />;
+      case "adminUsers":
+        return <AdminUsersPage />;
+      case "adminCatalog":
+        return <AdminCatalogPage />;
+      case "adminTransactions":
+        return <AdminTransactionsPage />;
+      case "adminAnalytics":
+        return <AdminAnalyticsPage />;
       default:
         return <HomePage />;
     }
