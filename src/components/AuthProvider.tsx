@@ -261,7 +261,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .select('role')
       .eq('user_id', user.id)
       .maybeSingle();
-    if (error) return null;
+    if (error || !data?.role) {
+      const metaRole = user.user_metadata?.role === 'admin' ? 'admin' : 'user';
+      return metaRole;
+    }
     return (data?.role as 'user' | 'admin' | undefined) ?? null;
   };
 
