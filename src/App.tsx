@@ -30,6 +30,7 @@ import AdminUsersPage from "./components/admin/AdminUsersPage";
 import AdminCatalogPage from "./components/admin/AdminCatalogPage";
 import AdminTransactionsPage from "./components/admin/AdminTransactionsPage";
 import AdminAnalyticsPage from "./components/admin/AdminAnalyticsPage";
+import AdminRouteGuard from "./components/admin/AdminRouteGuard";
 
 type Page =
   | "home"
@@ -179,15 +180,35 @@ function AppContent() {
       case "adminLogin":
         return <AdminLoginPage />;
       case "adminDashboard":
-        return <AdminDashboardPage />;
+        return (
+          <AdminRouteGuard>
+            <AdminDashboardPage />
+          </AdminRouteGuard>
+        );
       case "adminUsers":
-        return <AdminUsersPage />;
+        return (
+          <AdminRouteGuard>
+            <AdminUsersPage />
+          </AdminRouteGuard>
+        );
       case "adminCatalog":
-        return <AdminCatalogPage />;
+        return (
+          <AdminRouteGuard>
+            <AdminCatalogPage />
+          </AdminRouteGuard>
+        );
       case "adminTransactions":
-        return <AdminTransactionsPage />;
+        return (
+          <AdminRouteGuard>
+            <AdminTransactionsPage />
+          </AdminRouteGuard>
+        );
       case "adminAnalytics":
-        return <AdminAnalyticsPage />;
+        return (
+          <AdminRouteGuard>
+            <AdminAnalyticsPage />
+          </AdminRouteGuard>
+        );
       default:
         return <HomePage />;
     }

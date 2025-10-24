@@ -57,7 +57,7 @@ async function setTempPasswordAndMetadata(userId, tempPassword) {
 
 async function updateMetadata(userId) {
   const { error } = await supabase.auth.admin.updateUserById(userId, {
-    user_metadata: { username: USERNAME, external_uuid: EXTERNAL_UUID },
+    user_metadata: { username: USERNAME, external_uuid: EXTERNAL_UUID, role: 'admin' },
   });
   if (error) throw error;
 }

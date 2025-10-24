@@ -89,7 +89,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
-  const { signInWithEmail, signInWithGoogle } = useAuth();
+  const { signInWithEmail, signInWithGoogle, isAdmin } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,7 +101,19 @@ export default function LoginPage() {
       setErrorMsg(error);
       return;
     }
-    window.location.hash = "accueil";
+    
+    // Redirection conditionnelle selon le rôle
+    try {
+      const adminStatus = await isAdmin();
+      if (adminStatus) {
+        window.location.hash = "admin/dashboard";
+      } else {
+        window.location.hash = "accueil";
+      }
+    } catch (error) {
+      // En cas d'erreur, redirection par défaut vers l'accueil
+      window.location.hash = "accueil";
+    }
   };
 
   return (
@@ -181,7 +193,23 @@ export default function LoginPage() {
                 onClick={async () => {
                   setErrorMsg(null);
                   const { error } = await signInWithGoogle();
-                  if (error) setErrorMsg(error);
+                  if (error) {
+                    setErrorMsg(error);
+                    return;
+                  }
+                  
+                  // Redirection conditionnelle selon le rôle
+                  try {
+                    const adminStatus = await isAdmin();
+                    if (adminStatus) {
+                      window.location.hash = "admin/dashboard";
+                    } else {
+                      window.location.hash = "accueil";
+                    }
+                  } catch (error) {
+                    // En cas d'erreur, redirection par défaut vers l'accueil
+                    window.location.hash = "accueil";
+                  }
                 }}
               />
             </div>
