@@ -65,7 +65,7 @@ function Component1() {
 
 function Component4() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col items-start overflow-visible p-[12px] relative rounded-[8px] self-stretch shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col items-start overflow-visible p-[12px] relative rounded-[8px] self-stretch shrink-0" data-name="Component 7" href="#">
       <Component1 />
     </a>
   );
@@ -85,7 +85,7 @@ function Component2() {
 
 function Component6() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="#">
       <Component2 />
     </a>
   );
@@ -113,7 +113,7 @@ function Component3() {
 
 function Component7() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="#">
       <Component3 />
     </a>
   );
@@ -160,7 +160,7 @@ function Heading() {
 function Component5() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#accueil">
+      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#accueil">
         <p className="cursor-pointer leading-[28px] whitespace-pre">Accueil</p>
       </a>
     </div>
@@ -178,9 +178,9 @@ function Item() {
 function Component8() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#services">
-        <p className="cursor-pointer leading-[28px] whitespace-pre">Services</p>
-      </a>
+      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#services">
+         <p className="cursor-pointer leading-[28px] whitespace-pre">Services</p>
+       </a>
     </div>
   );
 }
@@ -196,9 +196,9 @@ function Item1() {
 function Component9() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#produits">
-        <p className="cursor-pointer leading-[28px] whitespace-pre">Produits</p>
-      </a>
+      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#produits">
+         <p className="cursor-pointer leading-[28px] whitespace-pre">Produits</p>
+       </a>
     </div>
   );
 }
@@ -214,9 +214,9 @@ function Item2() {
 function Component10() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#apropos">
-        <p className="cursor-pointer leading-[28px] whitespace-pre">À Propos</p>
-      </a>
+      <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#apropos">
+         <p className="cursor-pointer leading-[28px] whitespace-pre">À Propos</p>
+       </a>
     </div>
   );
 }

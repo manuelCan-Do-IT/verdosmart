@@ -2108,7 +2108,7 @@ function Component43() {
 
 function Component6() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col items-start overflow-visible p-[12px] relative rounded-[8px] self-stretch shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col items-start overflow-visible p-[12px] relative rounded-[8px] self-stretch shrink-0" data-name="Component 7" href="#">
       <Component43 />
     </a>
   );
@@ -2128,7 +2128,7 @@ function Component44() {
 
 function Component45() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="#">
       <Component44 />
     </a>
   );
@@ -2156,7 +2156,7 @@ function Component46() {
 
 function Component47() {
   return (
-    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="http://localhost:5174/admin">
+    <a className="bg-gray-800 box-border content-stretch cursor-pointer flex flex-col h-[48px] items-start overflow-visible p-[12px] relative rounded-[8px] shrink-0" data-name="Component 7" href="#">
       <Component46 />
     </a>
   );
@@ -2203,7 +2203,7 @@ function Heading3() {
 function Component7() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#accueil">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#accueil">
         <p className="leading-[28px] whitespace-pre">Accueil</p>
       </a>
     </div>
@@ -2221,7 +2221,7 @@ function Item8() {
 function Component48() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#services">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#services">
         <p className="leading-[28px] whitespace-pre">Services</p>
       </a>
     </div>
@@ -2239,7 +2239,7 @@ function Item9() {
 function Component49() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#produits">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#produits">
         <p className="leading-[28px] whitespace-pre">Produits</p>
       </a>
     </div>
@@ -2257,7 +2257,7 @@ function Item10() {
 function Component50() {
   return (
     <div className="content-stretch flex items-start relative shrink-0" data-name="Component 8">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="http://localhost:5174/admin#apropos">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#apropos">
         <p className="leading-[28px] whitespace-pre">À Propos</p>
       </a>
     </div>
@@ -2514,7 +2514,7 @@ function Container76() {
 function Component8() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Component 9">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="http://localhost:5174/admin#accueil">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="#accueil">
         <p className="leading-[28px] whitespace-pre">Accueil</p>
       </a>
     </div>
@@ -2524,7 +2524,7 @@ function Component8() {
 function Component55() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Component 9">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="http://localhost:5174/admin#services">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="#services">
         <p className="leading-[28px] whitespace-pre">Services</p>
       </a>
     </div>
@@ -2542,7 +2542,7 @@ function LinkMargin4() {
 function Component56() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Component 9">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="http://localhost:5174/admin#produits">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="#produits">
         <p className="leading-[28px] whitespace-pre">Produits</p>
       </a>
     </div>
@@ -2560,7 +2560,7 @@ function LinkMargin5() {
 function Component57() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Component 9">
-      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="http://localhost:5174/admin#apropos">
+      <a className="[white-space-collapse:collapse] cursor-pointer flex flex-col font-['Inter:Semi_Bold',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[16.3px] text-gray-700 text-nowrap" href="#apropos">
         <p className="leading-[28px] whitespace-pre">À Propos</p>
       </a>
     </div>

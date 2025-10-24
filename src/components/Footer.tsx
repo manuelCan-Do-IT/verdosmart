@@ -177,17 +177,17 @@ function BottomBar() {
       </div>
       <div className="content-stretch flex flex-wrap items-start gap-[24px] relative shrink-0" data-name="Container">
         <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Component 8">
-          <a href="#" className="flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-gray-400 text-nowrap hover:text-white transition-colors">
+          <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-gray-400 text-nowrap hover:text-white transition-colors">
             <p className="leading-[24px] whitespace-pre">Confidentialité</p>
           </a>
         </div>
         <div className="content-stretch flex flex-col h-[24px] items-start relative shrink-0" data-name="Component 8">
-          <a href="#" className="flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-gray-400 text-nowrap hover:text-white transition-colors">
+          <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#">
             <p className="leading-[24px] whitespace-pre">Conditions</p>
           </a>
         </div>
         <div className="content-stretch flex flex-col h-[24px] items-start relative shrink-0" data-name="Component 8">
-          <a href="#" className="flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-gray-400 text-nowrap hover:text-white transition-colors">
+          <a className="[white-space-collapse:collapse] flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[16.5px] text-gray-400 text-nowrap" href="#">
             <p className="leading-[24px] whitespace-pre">Mentions Légales</p>
           </a>
         </div>
@@ -210,3 +210,4 @@ export default function Footer() {
     </div>
   );
 }
+
