@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ShoppingCart, Trash2, Plus, Minus, ArrowRight, ShoppingBag, Sparkles, Package } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 function EmptyCart() {
   return (

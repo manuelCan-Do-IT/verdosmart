@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, Filter, ShoppingCart, Star, MapPin, Package, Leaf, Sprout, Cpu } from "lucide-react";
 import { useCart } from "./CartContext";
 import { productsData, type ProductData } from "./productsData";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 function MarketplaceHeader() {
   return (

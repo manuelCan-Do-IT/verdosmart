@@ -19,7 +19,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 function ProductGallery({ images, productName }: { images: string[]; productName: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
