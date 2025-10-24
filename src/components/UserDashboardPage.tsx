@@ -1,5 +1,7 @@
 import { Sprout, ShoppingBag, CalendarDays, Bell, CalendarCheck } from 'lucide-react';
 import { useAuth } from './AuthProvider';
+import AccountHeader from './AccountHeader';
+import Footer from './Footer';
 
 export default function UserDashboardPage() {
   const { user } = useAuth();
@@ -8,8 +10,9 @@ export default function UserDashboardPage() {
   const displayName = firstName || user?.email || '';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-0 transition-colors duration-300">
+      <AccountHeader backHref="#accueil" backLabel="Retour" />
+      <div className="max-w-6xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white font-['Sora',_sans-serif]">Bonjour{displayName ? `, ${displayName}` : ''} !</h1>
         <p className="text-gray-700 dark:text-gray-300 font-['Inter',_sans-serif] mt-2">Voici votre espace personnel. Commencez par explorer la boutique ou prendre rendez-vous avec un expert.</p>
 
@@ -37,6 +40,7 @@ export default function UserDashboardPage() {
           <a href="#mon-compte/rendez-vous" className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-['Inter',_sans-serif]">Voir mes rendez-vous</a>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

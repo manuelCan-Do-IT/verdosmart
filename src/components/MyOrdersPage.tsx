@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Package, FileDown, ArrowRight } from 'lucide-react';
+import AccountHeader from './AccountHeader';
+import Footer from './Footer';
 
 interface Order {
   id: string;
@@ -11,16 +13,14 @@ interface Order {
 
 export default function MyOrdersPage() {
   const [tab, setTab] = useState<'all' | 'ongoing' | 'done'>('all');
-  const [orders] = useState<Order[]>([
-    { id: '1001', date: '12/09/2025', type: 'Commande produit - Kit jardinage', price: '49,90€', status: 'ongoing' },
-    { id: '0998', date: '08/09/2025', type: 'Devis service - Audit énergétique', price: '0,00€', status: 'done' },
-  ]);
+  const [orders] = useState<Order[]>([]);
 
   const filtered = orders.filter((o) => (tab === 'all' ? true : o.status === tab));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-0 transition-colors duration-300">
+      <AccountHeader backHref="#mon-compte/tableau-de-bord" backLabel="Mon compte" />
+      <div className="max-w-5xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white font-['Sora',_sans-serif]">Mes Commandes</h1>
 
         <div className="mt-6 flex gap-3">
@@ -43,8 +43,8 @@ export default function MyOrdersPage() {
               <div key={o.id} className="rounded-2xl bg-white dark:bg-gray-800 shadow p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white font-['Inter',_sans-serif]">Commande #{o.id}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Date: {o.date} · Type: {o.type} · Prix: {o.price}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white font-['Inter',_sans-serif]">Commande #{o.id || 'Non renseigné'}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Date: {o.date || 'Non renseigné'} · Type: {o.type || 'Non renseigné'} · Prix: {o.price || 'Non renseigné'}</div>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={`px-3 py-1 rounded-full text-sm ${o.status==='ongoing'?'bg-yellow-100 text-yellow-700':'bg-emerald-100 text-emerald-700'}`}>{o.status==='ongoing'?'En cours':'Terminée'}</span>
@@ -59,6 +59,7 @@ export default function MyOrdersPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

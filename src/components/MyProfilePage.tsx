@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth, type Address } from './AuthProvider';
+import AccountHeader from './AccountHeader';
+import Footer from './Footer';
+import { toast } from 'sonner';
 
 export default function MyProfilePage() {
   const { user, getProfile, updateProfile, getPreferences, updatePreferences, getAddresses, addAddress, updateAddress, updatePassword } = useAuth();
@@ -37,42 +40,78 @@ export default function MyProfilePage() {
     load();
   }, [user?.id]);
 
+  const validateEmail = (val: string) => !val || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  const validatePhone = (val: string) => !val || /^[+\d][\d\s()-]{5,}$/.test(val);
+
   const saveProfile = async () => {
-    const full = [firstName, lastName].filter(Boolean).join(' ').trim();
-    const { error } = await updateProfile({ full_name: full || null, phone: phone || null });
-    if (!error) {
-      // Optionally reflect updated email_notifications via preferences
-      await updatePreferences({ email_notifications: prefEmail });
-      // SMS pref remains local-only placeholder
+    if (!validateEmail(email)) {
+      toast.error('Email invalide');
+      return;
     }
+    if (!validatePhone(phone)) {
+      toast.error('Téléphone invalide');
+      return;
+    }
+    const full = [firstName, lastName].filter(Boolean).join(' ').trim();
+    const { error } = await updateProfile({ full_name: full || null, phone: phone || null, email: email || null });
+    if (error) {
+      toast.error(`Erreur lors de l’enregistrement: ${error}`);
+      return;
+    }
+    await updatePreferences({ email_notifications: prefEmail });
+    toast.success('Profil mis à jour');
   };
 
   const savePassword = async () => {
-    if (!newPassword || newPassword !== confirmPassword) return;
-    await updatePassword(newPassword);
+    if (!newPassword || !confirmPassword) {
+      toast.error('Veuillez saisir et confirmer le mot de passe');
+      return;
+    }
+    if (newPassword.length < 8) {
+      toast.error('Mot de passe trop court (≥ 8 caractères)');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error('Les mots de passe ne correspondent pas');
+      return;
+    }
+    const { error } = await updatePassword(newPassword);
+    if (error) {
+      toast.error(`Erreur: ${error}`);
+      return;
+    }
     setNewPassword('');
     setConfirmPassword('');
+    toast.success('Mot de passe mis à jour');
   };
 
   const addAddressLocal = () => setAddresses([...addresses, { user_id: user?.id || '', line1: '', city: '', zip: '', country: '' }]);
 
   const saveAddresses = async () => {
+    let saved = 0;
     for (const addr of addresses) {
-      if (!addr.line1 || !addr.city || !addr.zip || !addr.country) continue;
+      if (!addr.line1 || !addr.city || !addr.zip || !addr.country) {
+        toast.error('Adresse incomplète — champs requis');
+        continue;
+      }
       if (addr.id) {
-        await updateAddress(addr.id, { label: addr.label || null, line1: addr.line1, city: addr.city, zip: addr.zip, country: addr.country });
+        const { error } = await updateAddress(addr.id, { label: addr.label || null, line1: addr.line1, city: addr.city, zip: addr.zip, country: addr.country });
+        if (!error) saved++;
       } else {
         const res = await addAddress({ label: addr.label || null, line1: addr.line1, city: addr.city, zip: addr.zip, country: addr.country });
         if (res.id) {
           addr.id = res.id;
+          saved++;
         }
       }
     }
+    if (saved > 0) toast.success('Adresse(s) enregistrée(s)');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-300">
-      <div className="max-w-3xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-0 transition-colors duration-300">
+      <AccountHeader backHref="#mon-compte/tableau-de-bord" backLabel="Mon compte" />
+      <div className="max-w-3xl mx-auto space-y-8 py-12 px-4">
         <div className="rounded-2xl bg-white dark:bg-gray-800 shadow p-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white font-['Sora',_sans-serif]">Informations personnelles</h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -138,6 +177,7 @@ export default function MyProfilePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { CalendarClock, Star, XCircle, ArrowRight } from 'lucide-react';
+import AccountHeader from './AccountHeader';
+import Footer from './Footer';
 
 interface Appointment {
   id: string;
@@ -11,16 +13,14 @@ interface Appointment {
 
 export default function MyAppointmentsPage() {
   const [tab, setTab] = useState<'upcoming' | 'past'>('upcoming');
-  const [appointments] = useState<Appointment[]>([
-    { id: 'A123', expert: 'Alice Durand (Paysagiste)', date: '15/09/2025', time: '10:30', status: 'upcoming' },
-    { id: 'A098', expert: 'Marc Petit (Énergéticien)', date: '05/09/2025', time: '14:00', status: 'past' },
-  ]);
+  const [appointments] = useState<Appointment[]>([]);
 
   const filtered = appointments.filter((a) => a.status === tab);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-12 px-4 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-0 transition-colors duration-300">
+      <AccountHeader backHref="#mon-compte/tableau-de-bord" backLabel="Mon compte" />
+      <div className="max-w-5xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white font-['Sora',_sans-serif]">Mes Rendez-vous</h1>
 
         <div className="mt-6 flex gap-3">
@@ -42,8 +42,8 @@ export default function MyAppointmentsPage() {
               <div key={a.id} className="rounded-2xl bg-white dark:bg-gray-800 shadow p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white font-['Inter',_sans-serif]">{a.expert}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Date: {a.date} · Heure: {a.time}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white font-['Inter',_sans-serif]">{a.expert || 'Non renseigné'}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Date: {a.date || 'Non renseigné'} · Heure: {a.time || 'Non renseigné'}</div>
                   </div>
                   {a.status === 'upcoming' ? (
                     <div className="flex items-center gap-3">
@@ -64,6 +64,7 @@ export default function MyAppointmentsPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
