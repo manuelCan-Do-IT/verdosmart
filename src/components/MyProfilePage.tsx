@@ -3,6 +3,7 @@ import { useAuth, type Address } from './AuthProvider';
 import AccountHeader from './AccountHeader';
 import Footer from './Footer';
 import { toast } from 'sonner';
+import { testSupabaseConnection } from '../lib/supabaseClient';
 
 export default function MyProfilePage() {
   const { user, getProfile, updateProfile, getPreferences, updatePreferences, getAddresses, addAddress, updateAddress, updatePassword } = useAuth();
@@ -50,6 +51,12 @@ export default function MyProfilePage() {
     }
     if (!validatePhone(phone)) {
       toast.error('Téléphone invalide');
+      return;
+    }
+    // Vérifie la connexion et les permissions avant d’écrire
+    const conn = await testSupabaseConnection();
+    if (!conn.ok) {
+      toast.error(`Enregistrement indisponible: ${conn.details}`);
       return;
     }
     const full = [firstName, lastName].filter(Boolean).join(' ').trim();

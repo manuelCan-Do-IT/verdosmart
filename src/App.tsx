@@ -31,6 +31,8 @@ import AdminCatalogPage from "./components/admin/AdminCatalogPage";
 import AdminTransactionsPage from "./components/admin/AdminTransactionsPage";
 import AdminAnalyticsPage from "./components/admin/AdminAnalyticsPage";
 import AdminRouteGuard from "./components/admin/AdminRouteGuard";
+import PaymentPage from "./components/PaymentPage";
+import MyPaymentsPage from "./components/MyPaymentsPage";
 
 type Page =
   | "home"
@@ -48,12 +50,14 @@ type Page =
   | "accountAppointments"
   | "accountMessaging"
   | "accountProfile"
+  | "accountPayments"
   | "adminLogin"
   | "adminDashboard"
   | "adminUsers"
   | "adminCatalog"
   | "adminTransactions"
-  | "adminAnalytics";
+  | "adminAnalytics"
+  | "payment";
 
 function HomePage() {
   return (
@@ -83,6 +87,7 @@ function AppContent() {
       else if (path?.startsWith("services")) setCurrentPage("services");
       else if (path === "contact") setCurrentPage("contact");
       else if (path === "cart") setCurrentPage("cart");
+      else if (path === "paiement" || path === "payment") setCurrentPage("payment");
       else if (path?.startsWith("product/")) setCurrentPage("product");
       else if (path === "profil") setCurrentPage("profil");
       else if (path === "confirmation") setCurrentPage("confirmation");
@@ -95,6 +100,9 @@ function AppContent() {
             break;
           case "commandes":
             setCurrentPage("accountOrders");
+            break;
+          case "paiements":
+            setCurrentPage("accountPayments");
             break;
           case "rendez-vous":
             setCurrentPage("accountAppointments");
@@ -177,6 +185,8 @@ function AppContent() {
         return user ? <MessagingPage /> : <LoginPage />;
       case "accountProfile":
         return user ? <MyProfilePage /> : <LoginPage />;
+      case "accountPayments":
+        return user ? <MyPaymentsPage /> : <LoginPage />;
       case "adminLogin":
         return <AdminLoginPage />;
       case "adminDashboard":
@@ -209,6 +219,8 @@ function AppContent() {
             <AdminAnalyticsPage />
           </AdminRouteGuard>
         );
+      case "payment":
+        return <PaymentPage />;
       default:
         return <HomePage />;
     }

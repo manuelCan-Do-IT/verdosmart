@@ -175,11 +175,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return data as Profile | null;
   };
 
+  const mapSupabaseErrorMessage = (msg: string): string => {
+      if (!msg) return 'Erreur inconnue';
+      if (/schema cache|relation .* does not exist|table .* not found/i.test(msg)) {
+        return "Schéma non appliqué: la table 'public.profiles' est absente. Ouvrez Supabase → SQL Editor et exécutez supabase/schema.sql.";
+      }
+      if (/permission|policy|RLS|Unauthorized/i.test(msg)) {
+        return "Accès refusé (RLS/politiques). Connectez‑vous et vérifiez les policies du schéma public.";
+      }
+      if (/Not authenticated|JWT|session/i.test(msg)) {
+        return 'Non authentifié: reconnectez‑vous avant de modifier votre profil.';
+      }
+      return msg;
+  };
   const updateProfile = async (patch: Partial<Profile>) => {
     if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
     const payload = { ...patch, user_id: user.id };
     const { error } = await supabase.from('profiles').upsert(payload, { onConflict: 'user_id' });
-    if (error) return { error: error.message };
+    if (error) return { error: mapSupabaseErrorMessage(error.message) };
     return {};
   };
 
@@ -197,8 +210,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const updatePreferences = async (patch: Partial<Preferences>) => {
     if (!SUPABASE_READY || !user) return { error: 'Not authenticated' };
     const payload = { ...patch, user_id: user.id };
-    const { error } = await supabase.from('preferences').upsert(payload, { onConflict: 'user_id' });
-    if (error) return { error: error.message };
+    const { error: prefError } = await supabase.from('preferences').upsert(payload, { onConflict: 'user_id' });
+    if (prefError) return { error: mapSupabaseErrorMessage(prefError.message) };
     return {};
   };
 
