@@ -48,25 +48,27 @@ function DesktopNav() {
   const AccountDropdown = () => (
     <div
       ref={menuRef}
-      className="absolute right-0 mt-2 w-80 sm:w-[340px] rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl py-2 origin-top-right"
+      role="menu"
+      aria-label="Menu du compte utilisateur"
+      className="absolute right-0 mt-2 w-80 sm:w-[340px] rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl p-2 origin-top-right space-y-2"
     >
-      <a href="#mon-compte/tableau-de-bord" className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold">
+      <a href="#mon-compte/tableau-de-bord" role="menuitem" className="group flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
         <LayoutDashboard className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         Tableau de bord
       </a>
-      <a href="#mon-compte/commandes" className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold">
+      <a href="#mon-compte/commandes" role="menuitem" className="group flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
         <ShoppingBag className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         Mes commandes
       </a>
-      <a href="#mon-compte/rendez-vous" className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold">
+      <a href="#mon-compte/rendez-vous" role="menuitem" className="group flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
         <CalendarDays className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         Mes rendez-vous
       </a>
-      <a href="#mon-compte/messagerie" className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold">
+      <a href="#mon-compte/messagerie" role="menuitem" className="group flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
         <MessageSquare className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         Messagerie
       </a>
-      <a href="#mon-compte/mon-profil" className="group flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold">
+      <a href="#mon-compte/mon-profil" role="menuitem" className="group flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
         <UserIcon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         Mon profil
       </a>
@@ -87,7 +89,8 @@ function DesktopNav() {
           }
         }}
         disabled={signingOut}
-        className="mt-1 w-full text-left flex items-center gap-3 px-4 py-3 rounded-lg border-2 border-red-500 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 font-semibold"
+        role="menuitem"
+        className="mt-1 w-full text-left flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 font-semibold focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800"
       >
         <LogOut className="h-5 w-5" />
         {signingOut ? "Déconnexion..." : "Se déconnecter"}
@@ -102,7 +105,8 @@ function DesktopNav() {
           <button
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl cursor-pointer transition-all border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold ${menuOpen ? "-translate-y-[2px]" : ""}`}
+            aria-haspopup="menu"
+            className={`inline-flex items-center gap-2 h-[44px] px-6 rounded-xl cursor-pointer transition-all border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 ${menuOpen ? "-translate-y-[2px]" : ""}`}
           >
             <UserIcon className="h-5 w-5" />
             Mon Compte
@@ -114,7 +118,7 @@ function DesktopNav() {
     }
     return (
       <>
-        <a href="#connexion" className="flex items-center justify-center px-6 py-3 rounded-xl border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold">
+        <a href="#connexion" className="flex items-center justify-center h-[44px] px-6 rounded-xl border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold">
           Se connecter
         </a>
         <a href="#signup" className="bg-gradient-to-r from-emerald-600 to-green-600 flex items-center justify-center px-7 py-3 rounded-xl font-semibold text-white hover:opacity-90">
@@ -144,7 +148,7 @@ function DesktopNav() {
             </span>
           )}
         </a>
-        <button onClick={toggleTheme} className="p-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400" aria-label="Toggle theme">
+        <button onClick={toggleTheme} className="p-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400" aria-label="Basculer le thème">
           {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
         </button>
         {renderAccount()}
@@ -201,29 +205,29 @@ function MobileNav() {
             <div className="border-t border-gray-200 dark:border-gray-700 pt-2" />
             <button
               onClick={() => setAccountOpen((v) => !v)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold transition-all ${accountOpen ? "-translate-y-[2px]" : ""}`}
+              className={`flex items-center gap-3 h-[44px] px-4 py-3 rounded-lg border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 ${accountOpen ? "-translate-y-[2px]" : ""}`}
             >
               <UserIcon className="h-5 w-5" />
               Mon Compte
               <ChevronDown className={`ml-auto h-5 w-5 transition-transform ${accountOpen ? "rotate-180" : "rotate-0"}`} />
             </button>
             {accountOpen && (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 {user ? (
                   <>
-                    <a href="#mon-compte/tableau-de-bord" className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold" onClick={() => setOpen(false)}>
+                    <a href="#mon-compte/tableau-de-bord" className="flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800" onClick={() => setOpen(false)}>
                       Tableau de bord
                     </a>
-                    <a href="#mon-compte/commandes" className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold" onClick={() => setOpen(false)}>
+                    <a href="#mon-compte/commandes" className="flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800" onClick={() => setOpen(false)}>
                       Mes commandes
                     </a>
-                    <a href="#mon-compte/rendez-vous" className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold" onClick={() => setOpen(false)}>
+                    <a href="#mon-compte/rendez-vous" className="flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800" onClick={() => setOpen(false)}>
                       Mes rendez-vous
                     </a>
-                    <a href="#mon-compte/messagerie" className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold" onClick={() => setOpen(false)}>
+                    <a href="#mon-compte/messagerie" className="flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800" onClick={() => setOpen(false)}>
                       Messagerie
                     </a>
-                    <a href="#mon-compte/mon-profil" className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold" onClick={() => setOpen(false)}>
+                    <a href="#mon-compte/mon-profil" className="flex items-center gap-3 p-3 min-h-[44px] rounded-lg text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800" onClick={() => setOpen(false)}>
                       Mon profil
                     </a>
                     <button
@@ -242,7 +246,7 @@ function MobileNav() {
                         }
                       }}
                       disabled={signingOut}
-                      className="text-left w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border-2 border-red-500 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 font-semibold"
+                      className="text-left w-full flex items-center justify-center gap-3 p-3 min-h-[44px] rounded-lg text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 font-semibold focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800"
                     >
                       <LogOut className="h-5 w-5" />
                       {signingOut ? "Déconnexion..." : "Se déconnecter"}
