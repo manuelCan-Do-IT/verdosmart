@@ -259,3 +259,35 @@ create policy "payment_logs insert owner via payment/tx" on payment_logs for ins
       where t.id = transaction_id and (o.user_id = auth.uid() or is_admin(auth.uid()))
     )
   );
+
+-- ================================
+-- Trigger: peupler profiles/preferences à la création d’un user
+-- ================================
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  -- Crée profil si absent
+  insert into public.profiles (user_id, email, full_name)
+  values (new.id, coalesce(new.email, ''), coalesce(new.raw_user_meta_data->>'full_name',''))
+  on conflict (user_id) do update
+    set email = excluded.email,
+        full_name = coalesce(excluded.full_name, public.profiles.full_name),
+        updated_at = now();
+
+  -- Crée préférences par défaut si absentes
+  insert into public.preferences (user_id)
+  values (new.id)
+  on conflict (user_id) do nothing;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+after insert on auth.users
+for each row execute function public.handle_new_user();
