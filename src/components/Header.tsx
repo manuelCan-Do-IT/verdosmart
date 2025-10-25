@@ -121,7 +121,7 @@ function DesktopNav() {
         <a href="#connexion" className="flex items-center justify-center h-[44px] px-6 rounded-xl border-2 border-emerald-600 dark:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold">
           Se connecter
         </a>
-        <a href="#signup" className="bg-gradient-to-r from-emerald-600 to-green-600 flex items-center justify-center px-7 py-3 rounded-xl font-semibold text-white hover:opacity-90">
+        <a href="#signup" aria-label="S'inscrire" className="inline-flex items-center justify-center h-[44px] px-8 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800">
           S'inscrire
         </a>
       </>
