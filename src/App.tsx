@@ -33,6 +33,8 @@ import AdminAnalyticsPage from "./components/admin/AdminAnalyticsPage";
 import AdminRouteGuard from "./components/admin/AdminRouteGuard";
 import PaymentPage from "./components/PaymentPage";
 import MyPaymentsPage from "./components/MyPaymentsPage";
+import ProfessionalsPage from "./components/ProfessionalsPage";
+import AppointmentPage from "./components/AppointmentPage";
 
 type Page =
   | "home"
@@ -57,7 +59,9 @@ type Page =
   | "adminCatalog"
   | "adminTransactions"
   | "adminAnalytics"
-  | "payment";
+  | "payment"
+  | "professionals"
+  | "appointment";
 
 function HomePage() {
   return (
@@ -91,6 +95,8 @@ function AppContent() {
       else if (path?.startsWith("product/")) setCurrentPage("product");
       else if (path === "profil") setCurrentPage("profil");
       else if (path === "confirmation") setCurrentPage("confirmation");
+      else if (path === "professionals" || path === "experts") setCurrentPage("professionals");
+      else if (path?.startsWith("rendez-vous/") || path?.startsWith("appointment/")) setCurrentPage("appointment");
       else if (path?.startsWith("mon-compte")) {
         const parts = path.split("/");
         const sub = parts[1] || "tableau-de-bord";
@@ -243,6 +249,10 @@ function AppContent() {
         );
       case "payment":
         return <PaymentPage />;
+      case "professionals":
+        return <ProfessionalsPage />;
+      case "appointment":
+        return <AppointmentPage />;
       default:
         return <HomePage />;
     }
