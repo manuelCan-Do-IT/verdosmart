@@ -116,6 +116,28 @@ function AppContent() {
           default:
             setCurrentPage("accountDashboard");
         }
+      } else if (path?.startsWith("admin-v")) {
+        const parts = path.split("/");
+        const sub = parts[1] || "";
+        switch (sub) {
+          case "dashboard":
+            setCurrentPage("adminDashboard");
+            break;
+          case "users":
+            setCurrentPage("adminUsers");
+            break;
+          case "catalog":
+            setCurrentPage("adminCatalog");
+            break;
+          case "transactions":
+            setCurrentPage("adminTransactions");
+            break;
+          case "analytics":
+            setCurrentPage("adminAnalytics");
+            break;
+          default:
+            setCurrentPage("adminLogin");
+        }
       } else if (path?.startsWith("admin")) {
         const parts = path.split("/");
         const sub = parts[1] || "dashboard";
@@ -227,9 +249,9 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
-      {(currentPage === "home" || currentPage === "marketplace") ? <Header /> : null}
-      {renderPage()}
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-300">
+      {currentPage !== "adminLogin" && !currentPage.startsWith("admin") && <Header />}
+      <main className="flex-grow">{renderPage()}</main>
       <Toaster 
         position="top-right" 
         richColors
