@@ -438,7 +438,7 @@ function CTASection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="#accueil#contact"
+            href="#contact"
             className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-emerald-600 font-['Inter',_sans-serif] font-semibold rounded-xl hover:bg-emerald-50 transition-all duration-300 shadow-xl hover:shadow-2xl"
           >
             Demander un Devis Gratuit

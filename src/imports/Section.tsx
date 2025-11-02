@@ -126,23 +126,23 @@ function Svg1() {
 function CTAButtons() {
   return (
     <div className="content-stretch flex flex-col sm:flex-row gap-[16px] items-start w-full sm:w-auto">
-      <div className="bg-gradient-to-r box-border content-stretch flex from-[#10b981] items-center justify-center pb-[18px] pt-[17.2px] px-[24px] sm:px-[32px] relative rounded-[12px] shrink-0 to-[#16a34a] w-full sm:w-auto cursor-pointer hover:opacity-90 transition-opacity">
+      <a href="#services" className="bg-gradient-to-r box-border content-stretch flex from-[#10b981] items-center justify-center pb-[18px] pt-[17.2px] px-[24px] sm:px-[32px] relative rounded-[12px] shrink-0 to-[#16a34a] w-full sm:w-auto cursor-pointer hover:opacity-90 transition-opacity">
         <div className="flex flex-col font-['Inter',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14px] sm:text-[16.3px] text-center text-nowrap text-white">
           <p className="leading-[28px] whitespace-pre">Découvrir nos services</p>
         </div>
         <div className="box-border content-stretch flex flex-col h-[20px] items-start pl-[8px] pr-0 py-0 relative shrink-0 w-[28px]">
           <Svg1 />
         </div>
-      </div>
+      </a>
       
-      <div className="bg-white relative rounded-[12px] shrink-0 w-full sm:w-auto cursor-pointer hover:shadow-lg transition-shadow">
+      <a href="#contact" className="bg-white relative rounded-[12px] shrink-0 w-full sm:w-auto cursor-pointer hover:shadow-lg transition-shadow">
         <div className="box-border content-stretch flex flex-col items-center justify-center overflow-clip px-[24px] sm:px-[33.6px] py-[17.6px] relative rounded-[inherit]">
           <div className="flex flex-col font-['Inter',_sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14px] sm:text-[16.9px] text-center text-gray-900 text-nowrap">
             <p className="leading-[28px] whitespace-pre">Demander un devis</p>
           </div>
         </div>
         <div aria-hidden="true" className="absolute border border-gray-200 border-solid inset-0 pointer-events-none rounded-[12px] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)]" />
-      </div>
+      </a>
     </div>
   );
 }

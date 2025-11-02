@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, Send, CheckCircle2, Clock, Users, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 import {
   Select,
   SelectContent,
@@ -129,22 +130,27 @@ function ContactForm() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = "Le nom est requis";
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = "Le nom doit contenir au moins 3 caractères";
     }
 
     if (!formData.email.trim()) {
       newErrors.email = "L'email est requis";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Email invalide";
+      newErrors.email = "Format d'email invalide";
     }
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Le téléphone est requis";
+    } else if (!/^(\+\d{1,3}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4,}$/.test(formData.phone)) {
+      newErrors.phone = "Format de téléphone invalide";
     }
 
     if (!formData.service) {
@@ -153,6 +159,8 @@ function ContactForm() {
 
     if (!formData.message.trim()) {
       newErrors.message = "Le message est requis";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Le message doit contenir au moins 10 caractères";
     }
 
     setErrors(newErrors);
@@ -169,8 +177,21 @@ function ContactForm() {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    // Configuration EmailJS
+    const serviceId = "service_verdosmart"; // À remplacer par votre Service ID
+    const templateId = "template_contact"; // À remplacer par votre Template ID
+    const publicKey = "YOUR_PUBLIC_KEY"; // À remplacer par votre clé publique
+    
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone,
+      service: formData.service,
+      message: formData.message
+    };
+    
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       toast.success("Message envoyé avec succès! Nous vous répondrons bientôt.");
       setFormData({
         name: "",
@@ -180,8 +201,21 @@ function ContactForm() {
         message: ""
       });
       setErrors({});
+      setFormSubmitted(true);
+      
+      // Enregistrement des données dans un système de gestion de clients (simulation)
+      console.log("Données du client enregistrées:", templateParams);
+      
+      // Redirection après 3 secondes vers la page d'accueil (optionnel)
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 3000);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'email:", error);
+      toast.error("Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (

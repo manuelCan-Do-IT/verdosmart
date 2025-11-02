@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Search, Filter, ShoppingCart, Star, MapPin, Package, Leaf, Sprout, Cpu } from "lucide-react";
-import { useCart } from "./CartContext";
 import { productsData, type ProductData } from "./productsData";
 import { toast } from "sonner";
+import AddProductModal from "./AddProductModal";
+import { useCart } from "./CartContext";
 
 function MarketplaceHeader() {
   return (
@@ -215,24 +216,32 @@ function ProductCard({ id, name, category, price, rating, reviews, location, inS
   );
 }
 
+
+
 export default function MarketplacePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [localProducts, setLocalProducts] = useState<ProductData[]>(productsData);
 
   const categories = [
-    { id: "all", title: "Tous les produits", icon: <Package className="h-6 w-6" />, count: 156 },
-    { id: "semences", title: "Semences", icon: <Sprout className="h-6 w-6" />, count: 45 },
-    { id: "intrants", title: "Intrants", icon: <Leaf className="h-6 w-6" />, count: 38 },
-    { id: "iot", title: "Capteurs IoT", icon: <Cpu className="h-6 w-6" />, count: 24 },
+    { id: "all", title: "Tous les produits", icon: <Package className="h-6 w-6" />, count: localProducts.length },
+    { id: "semences", title: "Semences", icon: <Sprout className="h-6 w-6" />, count: localProducts.filter(p => p.category === "Semences").length },
+    { id: "intrants", title: "Intrants", icon: <Leaf className="h-6 w-6" />, count: localProducts.filter(p => p.category === "Intrants").length },
+    { id: "iot", title: "Capteurs IoT", icon: <Cpu className="h-6 w-6" />, count: localProducts.filter(p => p.category === "Capteurs IoT").length },
   ];
 
-  const filteredProducts = productsData.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.category.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredProducts = localProducts.filter(product => {
+    const matchesSearch = product.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         product.category?.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = activeCategory === "all" || 
-                           product.category.toLowerCase().includes(activeCategory);
+                           product.category?.toLowerCase().includes(activeCategory);
     return matchesSearch && matchesCategory;
   });
+
+  const handleProductAdded = (newProduct: ProductData) => {
+    setLocalProducts(prev => [...prev, newProduct]);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 pt-20">
@@ -262,32 +271,51 @@ export default function MarketplacePage() {
             <h2 className="text-gray-900 dark:text-white">
               {filteredProducts.length} Produits disponibles
             </h2>
-            <select className="px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 outline-none focus:ring-2 focus:ring-emerald-500">
-              <option>Trier par popularité</option>
-              <option>Prix croissant</option>
-              <option>Prix décroissant</option>
-              <option>Meilleures notes</option>
-              <option>Nouveautés</option>
-            </select>
+            <button 
+              onClick={() => setIsAddModalOpen(true)}
+              className="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-['Inter:Semi_Bold',_sans-serif] font-semibold"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Ajouter un produit
+            </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-16">
-              <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-gray-900 dark:text-white mb-2">Aucun produit trouvé</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Essayez de modifier vos critères de recherche
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+              <Package className="h-24 w-24 text-emerald-400 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Aucun produit disponible</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+                La marketplace est actuellement vide. Cliquez sur le bouton "Ajouter un produit" pour commencer à remplir votre catalogue.
               </p>
+              <button 
+                onClick={() => setIsAddModalOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-['Inter:Semi_Bold',_sans-serif] font-semibold"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Ajouter un produit
+              </button>
             </div>
           )}
         </div>
       </div>
+      
+      <AddProductModal 
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onProductAdded={handleProductAdded}
+      />
     </div>
   );
 }

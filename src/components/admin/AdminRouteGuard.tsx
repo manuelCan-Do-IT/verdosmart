@@ -33,7 +33,7 @@ export default function AdminRouteGuard({ children }: AdminRouteGuardProps) {
           await supabase.from('security_logs').insert({
             user_id: user.id,
             action: 'unauthorized_admin_access',
-            details: 'Tentative d'accès à une route admin par un utilisateur non-admin',
+            details: "Tentative d'accès à une route admin par un utilisateur non-admin",
             ip_address: 'client-side',
             user_agent: navigator.userAgent
           }).catch(() => {
