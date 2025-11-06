@@ -154,7 +154,7 @@ function AgronomyServicesSection() {
       icon: <Sprout className="w-8 h-8 text-white" />,
       title: "Analyse et Diagnostic des Sols",
       description: "Analyse complète de la composition, du pH et de la structure de vos sols pour optimiser votre production agricole.",
-      image: "https://images.unsplash.com/photo-1750016065255-cab6cc76c8d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2lsJTIwYW5hbHlzaXMlMjBhZ3JpY3VsdHVyZXxlbnwxfHx8fDE3NjExODkyMTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Analyse_et_Diagnostic_des_Sols.png",
       features: [
         "Analyse physico-chimique complète",
         "Cartographie détaillée des parcelles",
@@ -166,7 +166,7 @@ function AgronomyServicesSection() {
       icon: <LineChart className="w-8 h-8 text-white" />,
       title: "Plans de Fertilisation sur Mesure",
       description: "Programmes de fertilisation personnalisés basés sur vos besoins spécifiques et les caractéristiques de vos cultures.",
-      image: "https://images.unsplash.com/photo-1712252046479-f2eca960ea6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtJTIwcGxhbm5pbmclMjBjb25zdWx0aW5nfGVufDF8fHx8MTc2MTE4OTIxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Plans_de_Fertilisation_sur_Mesure.png",
       features: [
         "Optimisation des apports nutritifs",
         "Réduction des coûts d'intrants",
@@ -178,7 +178,7 @@ function AgronomyServicesSection() {
       icon: <Users className="w-8 h-8 text-white" />,
       title: "Accompagnement Terrain Expert",
       description: "Nos agronomes vous accompagnent directement sur vos parcelles avec des visites régulières et un suivi personnalisé.",
-      image: "https://images.unsplash.com/photo-1604330025923-b99efb59d767?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyYWwlMjBmaWVsZCUyMG1vbml0b3Jpbmd8ZW58MXx8fHwxNzYxMTg5MjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Accompagnement_Terrain_Expert.png",
       features: [
         "Visites régulières programmées",
         "Diagnostic des problèmes en temps réel",
@@ -190,7 +190,7 @@ function AgronomyServicesSection() {
       icon: <Shield className="w-8 h-8 text-white" />,
       title: "Protection Intégrée des Cultures",
       description: "Stratégies de protection respectueuses de l'environnement pour préserver vos cultures des maladies et ravageurs.",
-      image: "https://images.unsplash.com/photo-1761058709621-d8aa1032912c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9wJTIwcHJvdGVjdGlvbiUyMGFncmljdWx0dXJlfGVufDF8fHx8MTc2MTIxMzYwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Protection_Intégrée_des_Cultures.png",
       features: [
         "Diagnostic phytosanitaire précis",
         "Solutions biologiques privilégiées",
@@ -202,7 +202,7 @@ function AgronomyServicesSection() {
       icon: <Droplets className="w-8 h-8 text-white" />,
       title: "Optimisation de l'Irrigation",
       description: "Systèmes d'irrigation intelligents pour maximiser l'efficacité hydrique et réduire le gaspillage d'eau.",
-      image: "https://images.unsplash.com/photo-1743742566156-f1745850281a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpcnJpZ2F0aW9uJTIwd2F0ZXIlMjBtYW5hZ2VtZW50fGVufDF8fHx8MTc2MTIxMzYwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Optimisation_de_l_Irrigation.png",
       features: [
         "Calcul des besoins hydriques",
         "Planification intelligente",
@@ -214,7 +214,7 @@ function AgronomyServicesSection() {
       icon: <Recycle className="w-8 h-8 text-white" />,
       title: "Transition Agroécologique",
       description: "Accompagnement vers des pratiques durables et régénératrices pour une agriculture respectueuse de l'environnement.",
-      image: "https://images.unsplash.com/photo-1757525473930-0b82237e55ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMGZhcm1pbmclMjBwcmFjdGljZXN8ZW58MXx8fHwxNzYxMjEzNjAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/transition_agroécologique.png",
       features: [
         "Agriculture biologique certifiée",
         "Rotation des cultures optimisée",
@@ -260,7 +260,7 @@ function AgronomyServicesSection() {
           />
           <StatCard
             icon={<Award className="w-8 h-8 text-white" />}
-            value="15+"
+            value="5+"
             label="Années d'expérience"
             color="from-emerald-500 to-green-600"
           />
@@ -283,7 +283,7 @@ function ITServicesSection() {
       icon: <Smartphone className="w-8 h-8 text-white" />,
       title: "Capteurs IoT Intelligents",
       description: "Réseau de capteurs de pointe pour surveiller vos parcelles en temps réel, 24h/24 et 7j/7.",
-      image: "https://images.unsplash.com/photo-1738598665806-7ecc32c3594c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyZSUyMHRlY2hub2xvZ3klMjBzZW5zb3JzfGVufDF8fHx8MTc2MTE4OTIxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Capteurs_IoT_Intelligents.png",
       features: [
         "Surveillance de l'humidité du sol",
         "Mesure de température en continu",
@@ -295,7 +295,7 @@ function ITServicesSection() {
       icon: <Cpu className="w-8 h-8 text-white" />,
       title: "Logiciels de Gestion Avancés",
       description: "Plateformes complètes pour gérer efficacement toutes les opérations de votre exploitation agricole.",
-      image: "https://images.unsplash.com/photo-1682368724565-86cf1c79ba98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtJTIwZGF0YSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NjExODkyMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Logiciels_de_Gestion_Avancés.png",
       features: [
         "Gestion des parcelles et cultures",
         "Planification des interventions",
@@ -307,7 +307,7 @@ function ITServicesSection() {
       icon: <Cloud className="w-8 h-8 text-white" />,
       title: "Analyse de Données Prédictive",
       description: "Tableaux de bord intelligents et analyses avancées pour prendre les meilleures décisions au bon moment.",
-      image: "https://images.unsplash.com/photo-1722119272044-fc49006131e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGZhcm1pbmclMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2MTE4OTIyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/images/services/Analyse_de_Données_Prédictive.png",
       features: [
         "Tableaux de bord interactifs",
         "Rapports détaillés personnalisés",
@@ -339,18 +339,7 @@ function ITServicesSection() {
         "Intégration avec vos systèmes"
       ]
     },
-    {
-      icon: <Lock className="w-8 h-8 text-white" />,
-      title: "Blockchain & Traçabilité",
-      description: "Technologie blockchain pour garantir une traçabilité totale de vos produits et renforcer la confiance des consommateurs.",
-      image: "https://images.unsplash.com/photo-1697177070185-a084efbef823?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZ3JpY3VsdHVyYWwlMjBibG9ja2NoYWluJTIwdHJhY2VhYmlsaXR5fGVufDF8fHx8MTc2MTIxMzYwMnww&ixlib=rb-4.1.0&q=80&w=1080",
-      features: [
-        "Traçabilité de la semence au consommateur",
-        "Certification numérique sécurisée",
-        "Transparence totale garantie",
-        "QR codes pour vos clients"
-      ]
-    }
+
   ];
 
   return (
