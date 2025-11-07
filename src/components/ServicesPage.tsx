@@ -164,7 +164,7 @@ function AgronomyServicesSection() {
     },
     {
       icon: <LineChart className="w-8 h-8 text-white" />,
-      title: "Plans de Fertilisation sur Mesure",
+      title: "Plans de Fertilisation sur Mesures",
       description: "Programmes de fertilisation personnalisés basés sur vos besoins spécifiques et les caractéristiques de vos cultures.",
       image: "/images/services/Plans_de_Fertilisation_sur_Mesure.png",
       features: [
