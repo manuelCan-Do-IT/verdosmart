@@ -42,8 +42,8 @@ export default function AdminLoginPage() {
     // Validation mot de passe
     if (!formData.password) {
       errors.password = 'Le mot de passe est requis';
-    } else if (formData.password.length < 6) {
-      errors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+    } else if (formData.password.length < 8) {
+      errors.password = 'Le mot de passe doit contenir au moins 8 caractères';
     }
     
     setValidationErrors(errors);
