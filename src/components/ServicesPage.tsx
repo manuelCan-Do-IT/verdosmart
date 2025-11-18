@@ -219,7 +219,7 @@ function AgronomyServicesSection() {
         "Agriculture biologique certifiée",
         "Rotation des cultures optimisée",
         "Biodiversité et sols vivants",
-        "Certification et labellisation"
+        "Certification et étiquetage (pas encore dispo...)"
       ]
     }
   ];
