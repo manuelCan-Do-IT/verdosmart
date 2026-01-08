@@ -18,7 +18,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }: Add
     location: "",
     vendor: "",
     description: "",
-    image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
+    image: "",
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
