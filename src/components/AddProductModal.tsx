@@ -13,7 +13,7 @@ interface AddProductModalProps {
 export default function AddProductModal({ isOpen, onClose, onProductAdded }: AddProductModalProps) {
   const [formData, setFormData] = useState({
     name: "",
-    category: "Semences",
+    category: "",
     price: "",
     location: "",
     vendor: "",
